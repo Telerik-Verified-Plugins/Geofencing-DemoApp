@@ -1,11 +1,11 @@
 {
-  "ProjectName": "SafariViewController",
-  "ProjectGuid": "d49353d9-b02c-45f8-96ba-252e4fed5b82",
+  "ProjectName": "Geofencing",
+  "ProjectGuid": "d49353d9-b13c-45f8-96ba-252e4fed5b82",
   "projectVersion": 1,
-  "AppIdentifier": "com.telerik.plugindemo.svc",
-  "DisplayName": "SafariViewController",
+  "AppIdentifier": "com.telerik.plugindemo.geofencing",
+  "DisplayName": "Geofencing",
   "Author": "Telerik",
-  "Description": "SafariViewController",
+  "Description": "Geofencing",
   "BundleVersion": "1.0.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
@@ -28,14 +28,14 @@
   "WP8TileTitle": "",
   "WP8Publisher": "",
   "WP8Capabilities": [
-    "ID_CAP_NETWORKING",
+    "ID_CAP_NETWORKING",a
     "ID_CAP_WEBBROWSERCOMPONENT"
   ],
   "WP8Requirements": [],
   "WP8PublisherID": "{2a1b72ee-ff6c-4301-bf60-0490879f3805}",
   "WP8ProductID": "{10f22057-8291-4274-9ccc-ba6f3c9ebf9c}",
   "WPSdk": "8.0",
-  "WP8PackageIdentityName": "1234Telerik.SafariViewController",
+  "WP8PackageIdentityName": "1234Telerik.Geofencing",
   "WP8WindowsPublisherName": "CN=Telerik",
   "WP8SupportedResolutions": [
     "ID_RESOLUTION_WVGA",
@@ -46,8 +46,7 @@
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-dialogs",
-    "cordova-plugin-inappbrowser",
-    "cordova-plugin-safariviewcontroller@1.4.0",
+    "cordova-plugin-geolocation",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar"
   ]
