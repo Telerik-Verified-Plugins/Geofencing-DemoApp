@@ -25,23 +25,6 @@
   "AndroidHardwareAcceleration": "True",
   "iOSStatusBarStyle": "Default",
   "Framework": "Cordova",
-  "WP8TileTitle": "",
-  "WP8Publisher": "",
-  "WP8Capabilities": [
-    "ID_CAP_NETWORKING",a
-    "ID_CAP_WEBBROWSERCOMPONENT"
-  ],
-  "WP8Requirements": [],
-  "WP8PublisherID": "{2a1b72ee-ff6c-4301-bf60-0490879f3805}",
-  "WP8ProductID": "{10f22057-8291-4274-9ccc-ba6f3c9ebf9c}",
-  "WPSdk": "8.0",
-  "WP8PackageIdentityName": "1234Telerik.Geofencing",
-  "WP8WindowsPublisherName": "CN=Telerik",
-  "WP8SupportedResolutions": [
-    "ID_RESOLUTION_WVGA",
-    "ID_RESOLUTION_WXGA",
-    "ID_RESOLUTION_HD720P"
-  ],
   "CorePlugins": [
     "cordova-plugin-console",
     "cordova-plugin-device",
