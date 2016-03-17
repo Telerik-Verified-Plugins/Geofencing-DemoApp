@@ -6,6 +6,12 @@
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
 
+  	<script>
+      window.onerror = function(a,b,c) {
+        alert(a);
+        alert(c);
+      }
+  	</script>
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
@@ -45,26 +51,22 @@
         data-model="app.demoService.viewModel">
 
         <div class="demo">
-            <h3>Check availability (iOS9+)</h3>
+            <h3>Initialize Geofencing</h3>
             <div class="smallbuttons">
-	            <button data-role="button" class="button" data-bind="click: isAvailable">Available?</button>
+	            <button data-role="button" class="button" data-bind="click: initGeo">Init</button>
 	          </div>
 
-            <h3>Opening SafariViewController</h3>
+            <h3>Geofence my position (enter or leave)</h3>
             <div class="smallbuttons">
-	            <button data-role="button" class="button" data-bind="click: noAnimation">No animation</button>
-	            <button data-role="button" class="button" data-bind="click: curlAnimation">Curl animation</button>
-	            <button data-role="button" class="button" data-bind="click: flipAnimation">Flip animation</button>
-	            <button data-role="button" class="button" data-bind="click: fadeAnimation">Fade animation</button>
-	            <button data-role="button" class="button" data-bind="click: slideAnimation">Slide animation (default)</button>
+	            <button data-role="button" class="button" data-bind="click: monitorEnterLeave20m">Within 20 m</button>
+	            <button data-role="button" class="button" data-bind="click: monitorEnterLeave500m">Within 500 m</button>
 	          </div>
 
-          	<h3>Advanced features</h3>
+          	<h3>Stop monitoring</h3>
             <div class="smallbuttons">
-	            <button data-role="button" class="button" data-bind="click: readerMode">Reader mode</button>
-	            <button data-role="button" class="button" data-bind="click: showEvents">Show events</button>
-	            <button data-role="button" class="button" data-bind="click: stealthMode">Stealth mode (hidden)</button>
-	            <button data-role="button" class="button" data-bind="click: withFallback">Fall back to InAppBrowser</button>
+	            <button data-role="button" class="button" data-bind="click: remove20m">Remove 20 m</button>
+	            <button data-role="button" class="button" data-bind="click: remove500m">Remove 500 m</button>
+	            <button data-role="button" class="button" data-bind="click: removeAll">Remove all</button>
 	          </div>
 			</div>
     </div>

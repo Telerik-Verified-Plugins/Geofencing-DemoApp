@@ -1,102 +1,87 @@
 (function (global) {
   var DemoViewModel,
-      url = "https://en.wikipedia.org/wiki/Safari",
+      geoTransitionListener = null,
       app = global.app = global.app || {};
   
   DemoViewModel = kendo.data.ObservableObject.extend({
     
-    isAvailable: function () {
+    initGeo: function () {
       if (!this.checkSimulator()) {
-        SafariViewController.isAvailable(this.onSuccessWithAlert);
+        geofence.initialize(this.onSuccessWithAlert);
       }
     },
     
-    _showSafariViewController: function (transition) {
-      if (!this.checkSimulator()) {
-        SafariViewController.show({
-          url: url,
-          animated: transition !== undefined, // default true, note that 'hide' will reuse this preference (the 'Done' button will always animate though)
-          transition: transition, // unless animated is false you can choose from: curl, flip, fade, slide (default)
-        });
-      }
-    },
-    
-    noAnimation: function () {
-      this._showSafariViewController();
+    monitorEnterLeave20m: function () {
+      this._determineLocation('20m', 20);
     },
 
-    curlAnimation: function () {
-      this._showSafariViewController('curl');
+    monitorEnterLeave500m: function () {
+      this._determineLocation('500m', 500);      
     },
 
-    flipAnimation: function () {
-      this._showSafariViewController('flip');
-    },
-
-    fadeAnimation: function () {
-      this._showSafariViewController('fade');
-    },
-
-    slideAnimation: function () {
-      this._showSafariViewController('slide');
-    },
-
-    readerMode: function () {
-      SafariViewController.show({
-        url: url,
-        enterReaderModeIfAvailable: true
-      });      
-    },
-
-    _showSafariViewControllerWithEvents: function (hidden) {
-      SafariViewController.show({
-	        url: url,
-  	      hidden: hidden
-    	  },
-      	// this success handler will be invoked for the lifecycle events 'opened', 'loaded' and 'closed'
-	      function(result) {
-  	      if (result.event === 'opened') {
-    	      alert('SVC opened');
-      	  } else if (result.event === 'loaded') {
-        	  alert('SVC loaded');
-	        } else if (result.event === 'closed') {
-  	        alert('SVC closed');
-    	    }
-     	  },
-      	this.onError
+    _determineLocation: function (id, radius) {
+      var that = this;
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          that._monitorEnterLeave(id, radius, position)
+        },
+        that.onError
       );
     },
-                                
-    showEvents: function () {
-      this._showSafariViewControllerWithEvents(false);
+
+    _monitorEnterLeave: function (id, radius, position) {
+      var that = this;
+      geofence.addOrUpdate ({
+          id:             id, //A unique identifier of geofence
+          latitude:       position.coords.latitude, //Geo latitude of geofence
+          longitude:      position.coords.longitude, //Geo longitude of geofence
+          radius:         radius, //Radius of geofence in meters
+          transitionType: 3, //Type of transition 1 - Enter, 2 - Exit, 3 - Both
+          notification: {         //Notification object
+              id:             1, //optional should be integer, id of notification
+              title:          'Geofencing enter/leave', //Title of notification
+              text:           'For id: ' + id + ', radius: ' + radius, //Text of notification
+//              smallIcon:      String, //Small icon showed in notification area, only res URI
+//              icon:           String, //icon showed in notification drawer
+              openAppOnClick: true,//is main app activity should be opened after clicking on notification
+//              vibration:      [Integer], //Optional vibration pattern - see description
+              data:           {id: id}  //Custom object associated with notification
+          }
+      }).then(
+        function () {
+          // now that we have a geofence we should listen for transitions,
+          // so set up a listener if we don't have one already
+          if (geoTransitionListener === null) {
+            geoTransitionListener = function (geofences) {
+              geofences.forEach(function (geo) {
+                that.onSuccessWithAlert('Geofence transition detected', JSON.stringify(geo));
+              });
+            };
+            geofence.onTransitionReceived = geoTransitionListener;
+          };
+	        that.onSuccessWithAlert("Geofence added");
+        },
+        that.onError
+      );
     },
 
-    stealthMode: function () {
-      this._showSafariViewControllerWithEvents(true);
-      // auto-hide after a few seconds
-      setTimeout(function() {
-      	SafariViewController.hide();
-      }, 3000);
+    remove20m: function () {
+      geofence.remove('20m').then(this.onSuccessWithAlert);
     },
-      
-    withFallback: function () {
-			SafariViewController.isAvailable(function (available) {
-        if (available) {
-          SafariViewController.show({
-            url: url
-          });
-        } else {
-          // if  the InAppBrowser plugin is installed it will use that since it (currently) clobbers window.open
-          window.open(url, '_blank', 'location=yes');
-        }
-      });
-  	},
+
+    remove500m: function () {
+      geofence.remove('500m').then(this.onSuccessWithAlert);
+    },
+
+    removeAll: function () {
+      geofence.removeAll().then(this.onSuccessWithAlert);
+    },
 
     checkSimulator: function() {
       if (window.navigator.simulator === true) {
         alert('This plugin is not available in the simulator.');
         return true;
-      } else if (window.SafariViewController === undefined) {
+      } else if (window.geofence === undefined) {
         alert('Plugin not found. Maybe you are running in AppBuilder Companion app which currently does not support this plugin.');
         return true;
       } else {
@@ -106,15 +91,23 @@
 
     // callbacks
     onSuccess: function(msg) {
-      console.log('SafariViewController success: ' + msg);
+      if (msg === undefined) {
+        console.log('OK, done');
+      } else {
+	      console.log('OK, details: ' + JSON.stringify(msg));        
+      }
     },
 
     onSuccessWithAlert: function(msg) {
-      alert(JSON.stringify(msg));
+      if (msg === undefined || msg === null) {
+        alert('OK, done');
+      } else {
+	      alert('OK: ' + JSON.stringify(msg));        
+      }
     },
 
     onError: function(msg) {
-      alert('SafariViewController error: ' + msg);
+      alert('Geofencing error: ' + JSON.stringify(msg));
     }
   });
 

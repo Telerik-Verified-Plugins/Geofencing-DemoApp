@@ -29,8 +29,14 @@
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-dialogs",
+    "cordova-plugin-geofence@0.5.0.1",
     "cordova-plugin-geolocation",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar"
-  ]
+  ],
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8PackageIdentityName": "1234Telerik.com.telerik.plugindemo.geofencing",
+  "WP8PublisherID": "{0676dd8c-9f39-419f-b4dd-ac8d63b1c0e1}",
+  "WP8ProductID": "{d5438857-c709-4b1d-bebc-b6040126f930}",
+  "iOSDeploymentTarget": "7.0"
 }
