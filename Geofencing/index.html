@@ -54,7 +54,11 @@
             <h3>Initialize Geofencing</h3>
           	<button data-role="button" class="button" data-bind="click: initGeo">Init</button>
 
-            <h3>Geofence my position (enter or leave)</h3>
+            <h3 class="hassubtitle">Geofence my position (enter or leave)</h3>
+          	<div class="subtitle">
+              Whenever you enter of leave a geofenced area you will received a message.
+              When the app is not in the foreground a message will show up in the notification center.
+            </div>
             <div class="smallbuttons">
 	            <button data-role="button" class="button" data-bind="click: monitorEnterLeave20m">Within 20 m</button>
 	            <button data-role="button" class="button" data-bind="click: monitorEnterLeave500m">Within 500 m</button>
