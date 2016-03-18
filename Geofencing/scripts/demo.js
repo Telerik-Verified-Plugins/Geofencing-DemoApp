@@ -102,7 +102,7 @@
       if (msg === undefined || msg === null) {
         alert('OK, done');
       } else {
-	      alert('OK: ' + JSON.stringify(msg));        
+	      alert('Success message: ' + JSON.stringify(msg));        
       }
     },
 

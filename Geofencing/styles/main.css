@@ -13,13 +13,18 @@
 }
 
 /* DEMO VIEW STYLES */
+.demo .button {
+  	left: 9%;
+    width: 82%;
+  	margin-bottom: 12px;
+}
+
 .demo .smallbuttons {
   text-align: center;
 }
 
 .demo .smallbuttons .button {
-    margin-bottom: 4px;
-    margin-top: 4px;
+  	left: 0;
     width: 40%;
 }
 
