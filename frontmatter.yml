@@ -5,6 +5,6 @@ description: This sample app shows you how to add Geofencing capabilities to you
 publish: true
 content_filter: true
 tags: verified plugin
-apis: appbuilder.simulator cordova.splashscreen cordova.events cordova.dialogs cordova.localStorage kendo.application kendo.application.skin kendo.observableObject kendo.view kendo.button kendo.navBar kendo.layout kendo.tabStrip verified.geofencing geofence.initialize geofence.addOrUpdate geofence.remove geofence.removeAll geofence.getWatched
+apis: appbuilder.simulator cordova.splashscreen cordova.events cordova.dialogs cordova.localStorage kendo.application kendo.application.skin kendo.observableObject kendo.view kendo.button kendo.navBar kendo.layout kendo.tabStrip verified.geofencing geofencing.initialize geofencing.addOrUpdate geofencing.remove geofencing.removeAll geofencing.getWatched
 related_resources:
 - "[The Geofencing Plugin](http://plugins.telerik.com/cordova/plugin/geofencing)"
