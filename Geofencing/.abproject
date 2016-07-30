@@ -29,7 +29,7 @@
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-dialogs",
-    "cordova-plugin-geofence@0.5.0.1",
+    "cordova-plugin-geofence@0.6.0",
     "cordova-plugin-geolocation",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar"
